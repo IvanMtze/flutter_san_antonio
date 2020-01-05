@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_san_antonio/Opciones/Resumen.dart';
+import 'package:flutter_san_antonio/Screen/Resumen.dart';
 
 void main() => runApp(MyApp());
 

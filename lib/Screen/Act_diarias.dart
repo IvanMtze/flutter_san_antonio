@@ -5,6 +5,7 @@ import 'Tabs/Alimento.dart';
 import 'Tabs/Mortandad.dart';
 
 class Act_diarias extends StatelessWidget {
+  var _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -12,6 +13,7 @@ class Act_diarias extends StatelessWidget {
         home: DefaultTabController(
       length: 3,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.red,
           bottom: TabBar(
@@ -26,9 +28,9 @@ class Act_diarias extends StatelessWidget {
         body: Center(
           child: TabBarView(
             children: [
-              Mortandad(),
-              Agua(),
-              Alimento(),
+              Mortandad(scaffoldKey: _scaffoldKey),
+              Agua(scaffoldKey: _scaffoldKey),
+              Alimento(scaffoldKey: _scaffoldKey),
             ],
           ),
         ),

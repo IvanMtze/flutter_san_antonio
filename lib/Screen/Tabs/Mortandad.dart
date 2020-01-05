@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_san_antonio/Data/Dao/DaoAgua.dart';
+import 'package:flutter_san_antonio/Data/Dao/DaoPollos.dart';
 
 final _myController = TextEditingController();
 
-class Agua extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+class Mortandad extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  Mortandad({Key key, this.scaffoldKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Center(
-      key: _scaffoldKey,
       child: new Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
-            "Ingrese agua",
+            "Ingrese mortandad",
             style: TextStyle(fontSize: 20),
           ),
           TextFormField(
-              onTap: () {},
               controller: _myController,
               decoration:
-                  const InputDecoration(hintText: "Litros de agua consumida")),
+                  const InputDecoration(hintText: "Numero de pollos muertos")),
           RaisedButton(
             onPressed: () {
-              _scaffoldKey.currentState.showSnackBar(
-                  new SnackBar(content: new Text("Something went wrong!")));
               save(_myController.text);
-              _scaffoldKey.currentState.showSnackBar(
-                  new SnackBar(content: new Text("Something went wrong!")));
             },
             child: const Text('Guardar', style: TextStyle(fontSize: 20)),
           ),
@@ -38,16 +33,14 @@ class Agua extends StatelessWidget {
     );
   }
 
-  Future<bool> save(String consumido) async {
-    var dao = new DaoAgua(agua: double.parse(consumido), llegada: 0.0);
+  Future<bool> save(String numPollos) async {
+    var dao = new DaoPollos(0, int.parse(numPollos));
     bool val = await dao.save();
     if (val == true) {
-      debugPrint("hola");
-      _scaffoldKey.currentState
+      scaffoldKey.currentState
           .showSnackBar(new SnackBar(content: new Text("OK")));
     } else {
-      debugPrint("as");
-      _scaffoldKey.currentState.showSnackBar(
+      scaffoldKey.currentState.showSnackBar(
           new SnackBar(content: new Text("Something went wrong!")));
     }
   }

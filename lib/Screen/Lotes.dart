@@ -41,7 +41,7 @@ class Lotes extends StatelessWidget {
   }
 
   Future<bool> save(String numPollos) async {
-    var dao = new DaoPollos(perdidas: 0.0, numPollos: double.parse(numPollos));
+    var dao = new DaoPollos(0, int.parse(numPollos));
     bool val = await dao.save();
     if (val == true) {
       _scaffoldKey.currentState

@@ -38,7 +38,7 @@ class AlimentoConsumido extends StatelessWidget {
   }
 
   Future<bool> save(String consumido) async {
-    var dao = new DaoAlimento(alimento: double.parse(consumido), llegada: 0.0);
+    var dao = new DaoAlimento(double.parse(consumido), 0.0);
     bool val = await dao.save();
     if (val == true) {
       scaffoldKey.currentState

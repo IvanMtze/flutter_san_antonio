@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_san_antonio/Opciones/Act_diarias.dart';
-import 'package:flutter_san_antonio/Opciones/Configuracion.dart';
-import 'package:flutter_san_antonio/Opciones/Lotes.dart';
-import 'package:flutter_san_antonio/Opciones/Peso_promedio.dart';
+import 'package:flutter_san_antonio/Screen//Act_diarias.dart';
+import 'package:flutter_san_antonio/Screen/Configuracion.dart';
+import 'package:flutter_san_antonio/Screen/Lotes.dart';
+import 'package:flutter_san_antonio/Screen/Peso_promedio.dart';
 
 import 'AlimentoConsumido.dart';
 

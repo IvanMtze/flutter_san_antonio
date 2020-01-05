@@ -1,28 +1,33 @@
 import 'package:date_format/date_format.dart';
+import 'package:flutter_san_antonio/Model/Entity/Agua.dart';
 import 'package:http/http.dart' as http;
 
+import '../DatabaseHelper.dart';
+
 class DaoAgua {
-  final double agua;
-  final double llegada;
-  String date = "";
-  DaoAgua({
-    this.llegada,
-    this.agua,
-  }) {
-    date = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd]);
+  final double _agua;
+  final double _llegada;
+  String _date = "";
+  final db = DatabaseHelper();
+
+  DaoAgua(this._llegada, this._agua) {
+    _date = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd]);
   }
 
   Future<bool> save() async {
-    double guardar = llegada == 0.0 ? agua : llegada;
+    double _guardar = _llegada == 0.0 ? _agua : _llegada;
 
-    final response = await http.get("127.0.0.1/ag," +
-        llegada.toString() +
+    var _URL = "http://127.0.01," +
+        _llegada.toString() +
         "," +
-        agua.toString() +
+        _agua.toString() +
         "," +
-        date);
+        _date;
+
+    final response = await http.get(_URL);
 
     if (response.statusCode == 200) {
+      db.insertaAgua(new Agua(_guardar, _date));
       return true;
     } else {
       return false;

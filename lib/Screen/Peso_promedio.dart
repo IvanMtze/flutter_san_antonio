@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_san_antonio/Data/Dao/DaoAlimento.dart';
+import 'package:flutter_san_antonio/Data/Dao/PesoDao.dart';
 
 final _myController = TextEditingController();
 
-class Alimento extends StatelessWidget {
+class Peso_promedio extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -11,21 +11,22 @@ class Alimento extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
         key: _scaffoldKey,
+        appBar: AppBar(
+            backgroundColor: Colors.red, title: const Text('Peso promedio')),
         backgroundColor: Colors.white,
         body: Center(
           child: new Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "Ingrese alimento",
+                "Ingrese peso",
                 style: TextStyle(fontSize: 20),
               ),
               TextFormField(
                   onTap: () {},
                   controller: _myController,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      hintText: "Kilos de alimento llegados")),
+                  decoration: const InputDecoration(hintText: "Peso promedio")),
               RaisedButton(
                 onPressed: () {
                   save(_myController.text);
@@ -37,8 +38,8 @@ class Alimento extends StatelessWidget {
         ));
   }
 
-  Future<bool> save(String consumido) async {
-    var dao = new DaoAlimento(alimento: double.parse(consumido), llegada: 0.0);
+  Future<bool> save(String numPollos) async {
+    var dao = new DaoPeso(0.0, double.parse(numPollos));
     bool val = await dao.save();
     if (val == true) {
       _scaffoldKey.currentState
